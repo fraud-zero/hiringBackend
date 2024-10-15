@@ -58,11 +58,12 @@ class PlacementController extends Controller
             $query->where('platform', $filters['platform']);
         }
 
-        if (!is_null($filters['min_total'])) {
+
+        if (isset($filters['min_total']) && !is_null($filters['min_total'])) {
             $query->where('total', '>=', $filters['min_total']);
         }
 
-        if (!is_null($filters['min_invalid_total'])) {
+        if (isset($filters['min_invalid_total']) && !is_null($filters['min_invalid_total'])) {
             $query->where('invalid_total', '>=', $filters['min_invalid_total']);
         }
 
