@@ -6,9 +6,8 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class PlacementRequest extends FormRequest
 {
-    public function authorize(): true
+    public function authorize(): bool
     {
-        // Authorize all users to make this request.
         return true;
     }
 
@@ -20,6 +19,11 @@ class PlacementRequest extends FormRequest
             'per_page' => 'nullable|integer|min:1|max:100',
             'page' => 'nullable|integer|min:1',
             'paginate' => 'nullable|boolean',
+            // filtering by key, platform, min_total, and min_invalid_total
+            'key' => 'nullable|string',
+            'platform' => 'nullable|string|in:web,app',
+            'min_total' => 'nullable|integer|min:0',
+            'min_invalid_total' => 'nullable|integer|min:0',
         ];
     }
 
@@ -34,6 +38,11 @@ class PlacementRequest extends FormRequest
             'page.integer' => 'The page must be an integer.',
             'page.min' => 'The page must be at least 1.',
             'paginate.boolean' => 'The paginate field must be true or false.',
+            'platform.in' => 'The platform must be either web or app.',
+            'min_total.integer' => 'The min_total must be an integer.',
+            'min_total.min' => 'The min_total must be at least 0.',
+            'min_invalid_total.integer' => 'The min_invalid_total must be an integer.',
+            'min_invalid_total.min' => 'The min_invalid_total must be at least 0.',
         ];
     }
 }

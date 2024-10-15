@@ -11,4 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 class Placement extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
+
 }
